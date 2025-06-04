@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Maaran Parotta Kadai</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='images/hotel.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            backdrop-filter: blur(5px);
+            color: #000;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 60px;
+            font-size: 36px;
+        }
+
+        .welcome {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .option-box {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+
+        .option-box:hover {
+            transform: scale(1.05);
+        }
+
+        .option-box img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .option-box a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .option-box a:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Logout button */
+        .logout-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logout-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        /* View / Cancel Reservation Button */
+        .view-cancel-container {
+            margin-top: 40px;
+        }
+
+        a.view-cancel-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        a.view-cancel-btn img {
+            width: 24px;
+            height: 24px;
+        }
+
+        a.view-cancel-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logout-container">
+        <a href="{{ url_for('logout') }}" class="logout-btn" title="Logout">
+            <img src="{{ url_for('static', filename='images/logout.jpg') }}" alt="Logout Icon">
+            Logout
+        </a>
+    </div>
+
+    <h1>Maaran Parotta Kadai</h1>
+    <div class="welcome">Welcome, {{ username }}!</div>
+
+    <div class="options">
+        <!-- Reserve Table Option -->
+        <div class="option-box" title="Reserve a Table">
+            <img src="{{ url_for('static', filename='images/table.jpg') }}" alt="Reserve Table">
+            <h3>Reserve a Table</h3>
+            <a href="{{ url_for('reserve') }}">Reserve</a>
+        </div>
+
+        <!-- Order Food Option -->
+        <div class="option-box" title="Order Food">
+            <img src="{{ url_for('static', filename='images/food.jpg') }}" alt="Order Food">
+            <h3>Order Food</h3>
+            <a href="{{ url_for('menu') }}">Order Food</a>
+        </div>
+    </div>
+
+    <!-- View / Cancel My Reservations -->
+    <div class="view-cancel-container">
+        <a href="/myreservations" class="view-cancel-btn" title="View / Cancel Reservations">
+            <img src="{{ url_for('static', filename='images/reserve.jpg') }}" alt="View/Cancel Icon">
+            View / Cancel My Reservations
+        </a>
+    </div>
+
+</body>
+</html>
