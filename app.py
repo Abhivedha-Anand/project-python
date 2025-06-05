@@ -37,6 +37,10 @@ for file_path, columns in [
 def home():
     #return redirect("/index")
     return render_template("index.html")
+    
+@app.route('/health')
+def health_check():
+    return jsonify({'Status': '200'})
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
