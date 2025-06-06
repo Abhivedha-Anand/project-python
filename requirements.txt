@@ -1,4 +1,5 @@
-flask
-pandas
-openpyxl
-itsdangerous
+Flask==3.0.2
+pandas==2.2.2
+openpyxl==3.1.2
+itsdangerous==2.1.2
+gunicorn==21.2.0
