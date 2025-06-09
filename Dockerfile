@@ -24,6 +24,7 @@ COPY . .
  
 # Expose port
 EXPOSE 5000
+RUN chmod -R a+w /app
  
 # Start the app
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
