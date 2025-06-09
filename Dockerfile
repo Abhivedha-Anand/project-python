@@ -1,31 +1,23 @@
-# Use an official Python base image
-FROM python:3.10-slim
- 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Use official lightweight Python image
+FROM python:3.11-slim
  
 # Set working directory
 WORKDIR /app
  
-# Copy project files into the container
-COPY . /app
- 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
+# Install apt deps for pandas excel support
+RUN apt-get update \
+    && apt-get install -y build-essential libxml2-dev libxslt-dev libffi-dev \
     && rm -rf /var/lib/apt/lists/*
  
-# Install Python dependencies
-RUN pip install --upgrade pip
-RUN pip install flask pandas openpyxl itsdangerous
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
  
-# Expose the port Flask runs on
+# Copy everything else
+COPY . .
+ 
+# Expose port
 EXPOSE 5000
  
-# Run the Flask app
-CMD ["python", "app.py"]
+# Specify default command
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
