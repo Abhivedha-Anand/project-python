@@ -4,20 +4,27 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
  
-# Install apt deps for pandas excel support
+# Install apt dependencies for building and XML handling
 RUN apt-get update \
-    && apt-get install -y build-essential libxml2-dev libxslt-dev libffi-dev \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        libxml2-dev \
+        libxslt-dev \
+        libffi-dev \
+        apt-utils \
+        ca-certificates \
     && rm -rf /var/lib/apt/lists/*
  
 # Copy requirements and install
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
  
-# Copy everything else
+# Copy rest of the app
 COPY . .
  
 # Expose port
 EXPOSE 5000
  
-# Specify default command
+# Start the app
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+ 
