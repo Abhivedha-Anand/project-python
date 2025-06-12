@@ -4,24 +4,33 @@ import os
 from datetime import datetime
 from itsdangerous import URLSafeTimedSerializer
 
-
-
-
-
 app = Flask(__name__)
 app.secret_key = 'a_very_secret_key_123!@#'  # Required for session handling
 
 s = URLSafeTimedSerializer(app.secret_key)
 
 
+ORIGINAL_USER_FILE = 'users.xlsx'
+ORIGINAL_TABLE_FILE = 'tables.xlsx'
+ORIGINAL_FOODMENU_FILE = 'foodmenu.xlsx'
+ORIGINAL_RESERVATIONS_FILE = 'reservations.xlsx'
 
+USER_FILE = '/tmp/users.xlsx'
+TABLE_FILE = '/tmp/tables.xlsx'
+FOODMENU_FILE = '/tmp/foodmenu.xlsx'
+RESERVATIONS_FILE = '/tmp/reservations.xlsx'
 
+if not os.path.exists(USER_FILE):
+    shutil.copy(ORIGINAL_USER_FILE, USER_FILE)
 
+if not os.path.exists(TABLE_FILE):
+    shutil.copy(ORIGINAL_TABLE_FILE, TABLE_FILE)
 
-USER_FILE = 'users.xlsx'
-TABLE_FILE = 'tables.xlsx'
-FOODMENU_FILE = 'foodmenu.xlsx'
-RESERVATIONS_FILE = 'reservations.xlsx'
+if not os.path.exists(FOODMENU_FILE):
+    shutil.copy(ORIGINAL_FOODMENU_FILE, FOODMENU_FILE)
+
+if not os.path.exists(RESERVATIONS_FILE):
+    shutil.copy(ORIGINAL_RESERVATIONS_FILE, RESERVATIONS_FILE)
 
 # Ensure necessary files exist
 for file_path, columns in [
