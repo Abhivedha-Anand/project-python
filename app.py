@@ -15,11 +15,13 @@ ORIGINAL_USER_FILE = 'users.xlsx'
 ORIGINAL_TABLE_FILE = 'tables.xlsx'
 ORIGINAL_FOODMENU_FILE = 'foodmenu.xlsx'
 ORIGINAL_RESERVATIONS_FILE = 'reservations.xlsx'
+ORIGINAL_FINAL_CONFIRMATION_FILE = 'final_confirmations.xlsx'
 
 USER_FILE = '/tmp/users.xlsx'
 TABLE_FILE = '/tmp/tables.xlsx'
 FOODMENU_FILE = '/tmp/foodmenu.xlsx'
 RESERVATIONS_FILE = '/tmp/reservations.xlsx'
+FINAL_CONFIRMATION_FILE = '/tmp/final_confirmations.xlsx'
 
 if not os.path.exists(USER_FILE):
     shutil.copy(ORIGINAL_USER_FILE, USER_FILE)
@@ -32,6 +34,9 @@ if not os.path.exists(FOODMENU_FILE):
 
 if not os.path.exists(RESERVATIONS_FILE):
     shutil.copy(ORIGINAL_RESERVATIONS_FILE, RESERVATIONS_FILE)
+    
+if not os.path.exists(RESERVATIONS_FILE):
+    shutil.copy(ORIGINAL_FINAL_CONFIRMATION_FILE, FINAL_CONFIRMATION_FILE)
 
 # Ensure necessary files exist
 for file_path, columns in [
