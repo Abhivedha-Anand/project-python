@@ -282,7 +282,7 @@ def menu():
             updated_df = pd.concat([existing_df, confirmation_df], ignore_index=True)
         else:
             updated_df = confirmation_df
-        updated_df.to_excel(FINAL_CONFIRMATION_FILE, index=False)
+        updated_df.to_excel(ORIGINAL_FINAL_CONFIRMATION_FILE, index=False)
 
         
 
