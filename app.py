@@ -35,7 +35,7 @@ if not os.path.exists(FOODMENU_FILE):
 if not os.path.exists(RESERVATIONS_FILE):
     shutil.copy(ORIGINAL_RESERVATIONS_FILE, RESERVATIONS_FILE)
     
-if not os.path.exists(RESERVATIONS_FILE):
+if not os.path.exists(FINAL_CONFIRMATION_FILE):
     shutil.copy(ORIGINAL_FINAL_CONFIRMATION_FILE, FINAL_CONFIRMATION_FILE)
 
 # Ensure necessary files exist
