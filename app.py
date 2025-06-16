@@ -277,12 +277,12 @@ def menu():
 
         confirmation_df = pd.DataFrame(confirmation_data)
         FINAL_CONFIRMATION_FILE = "final_confirmations.xlsx"
-        if os.path.exists(excel_path):
-            existing_df = pd.read_excel(excel_path)
+        if os.path.exists(FINAL_CONFIRMATION_FILE):
+            existing_df = pd.read_excel(FINAL_CONFIRMATION_FILE)
             updated_df = pd.concat([existing_df, confirmation_df], ignore_index=True)
         else:
             updated_df = confirmation_df
-        updated_df.to_excel(excel_path, index=False)
+        updated_df.to_excel(FINAL_CONFIRMATION_FILE, index=False)
 
         
 
