@@ -276,13 +276,25 @@ def menu():
             })
 
         confirmation_df = pd.DataFrame(confirmation_data)
-        FINAL_CONFIRMATION_FILE = "final_confirmations.xlsx"
-        if os.path.exists(FINAL_CONFIRMATION_FILE):
-            existing_df = pd.read_excel(FINAL_CONFIRMATION_FILE)
-            updated_df = pd.concat([existing_df, confirmation_df], ignore_index=True)
-        else:
-            updated_df = confirmation_df
-        updated_df.to_excel(ORIGINAL_FINAL_CONFIRMATION_FILE, index=False)
+        # if os.path.exists(FINAL_CONFIRMATION_FILE):
+        #     existing_df = pd.read_excel(FINAL_CONFIRMATION_FILE)
+        #     updated_df = pd.concat([existing_df, confirmation_df], ignore_index=True)
+        # else:
+        #     updated_df = confirmation_df
+        # updated_df.to_excel(ORIGINAL_FINAL_CONFIRMATION_FILE, index=False)
+
+        if not os.path.exists(FINAL_CONFIRMATION_FILE):
+            if os.path.exists(ORIGINAL_FINAL_CONFIRMATION_FILE):
+                shutil.copy(ORIGINAL_FINAL_CONFIRMATION_FILE, FINAL_CONFIRMATION_FILE)
+            else:
+                pd.DataFrame(columns=['Name',	'Mobile,'	'Reserved Tables',	'Start Time',	'End Time',	'Food Item',	'Quantity',	'Price',	'Subtotal',	'GST',	'Service Charge',	'Item Total',	'Order Total'
+]).to_excel(FINAL_CONFIRMATION_FILE, index=False)
+        
+        existing_df = pd.read_excel(FINAL_CONFIRMATION_FILE)
+        updated_df = pd.concat([existing_df, confirmation_df], ignore_index=True)
+        updated_df.to_excel(FINAL_CONFIRMATION_FILE, index=False)
+
+        
 
         
 
