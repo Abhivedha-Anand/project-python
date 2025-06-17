@@ -87,9 +87,6 @@ def register():
         if username in df["username"].values:
             message = "<p style='color:red;'>Username already exists</p>"
         else:
-            
-
-
             new_user = pd.DataFrame([{
                 'email': email,
                 'username': username,
@@ -294,12 +291,6 @@ def menu():
         updated_df = pd.concat([existing_df, confirmation_df], ignore_index=True)
         updated_df.to_excel(FINAL_CONFIRMATION_FILE, index=False)
 
-        
-
-        
-
-        
-
         return render_template("confirmation.html",
             name=reservation["name"],
             mobile=reservation["mobile"],
@@ -312,31 +303,8 @@ def menu():
             service_charge=service_charge,
             grand_total=grand_total
         )
-    
-
-
-
-
-    
 
     return render_template("menu.html", food_items=df.to_dict(orient="records"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #cancellation
 
@@ -359,9 +327,6 @@ def cancel_reservation(reservation_index):
         reservations.to_excel(RESERVATIONS_FILE, index=False)
 
     return redirect("/myreservations")
-
-
-
 
 @app.route("/myreservations")
 def my_reservations():
@@ -386,11 +351,6 @@ def my_reservations():
     user_reservations = user_reservations.reset_index()  # Optional for row access
     return render_template("myreservations.html", reservations=user_reservations.to_dict(orient="records"))
 
-
-
-
-
-
 # ✅ New route just for returning from confirmation
 @app.route("/back_to_dashboard")
 def back_to_dashboard():
@@ -401,17 +361,12 @@ def back_to_dashboard():
     can_order = 'reservation' in session and session['reservation']
     return render_template("dashboard.html", username=username, can_order=can_order)
 
-
-
-
 ###logout
 
 @app.route("/logout")
 def logout():
     session.pop("username", None)
     return redirect("/login")
-
-
 
 #####forgot pswd
 
@@ -421,9 +376,6 @@ import smtplib
 from flask import Flask, request, redirect, render_template, url_for, session
 from email.mime.text import MIMEText
 from itsdangerous import URLSafeTimedSerializer
-
-
-
 
 @app.route("/forgot-password", methods=["GET", "POST"])
 def forgot_password():
@@ -459,9 +411,6 @@ def forgot_password():
             message = "Email not found."
 
     return render_template("forgot_password.html", message=message)
-
-
-
 
 @app.route("/reset-password/<token>", methods=["GET", "POST"])
 def reset_password(token):
