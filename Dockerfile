@@ -26,7 +26,7 @@ COPY . .
 RUN mkdir -p /tmp
 
 # ✅ Expose Flask port
-EXPOSE 8080
+EXPOSE 5000
 
 # ✅ Use gunicorn for production
 CMD ["python", "app.py"]
